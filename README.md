@@ -1,5 +1,5 @@
 # ARCore Scene Semantics Sample
-This sample demonstrates how to overlay labels, obtained using the ARCore Scene Semantics API, on camera imagery.
+This sample demonstrates how to overlay labels, obtained using the ARCore Scene Semantics API.
 
 Dependencies:<br>
 - Unity2021.3.25f1<br>
