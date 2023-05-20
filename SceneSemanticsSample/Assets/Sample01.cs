@@ -23,8 +23,7 @@ public class Sample01 : MonoBehaviour
     [SerializeField]
     MeshRenderer _semanticMeshRenderer;
     Texture2D _semanticTexture;
-    bool _textureInitialized=false;
-
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -57,11 +56,7 @@ public class Sample01 : MonoBehaviour
         if(!_isSemanticModeSupported){return ;}
         //If SemanticTexture is not ready, do nothing.
         if(!_semanticManager.TryGetSemanticTexture(ref _semanticTexture)){ return;}
-        //If texture of MeshRenderer is not initialized, set SemanticTexture to MeshRenderer.
-        if(!_textureInitialized){
-            _textureInitialized=true;
-            //Set SemanticTexture to MeshRenderer.
-            _semanticMeshRenderer.material.mainTexture = _semanticTexture;
-        }
+        //Set SemanticTexture to MeshRenderer.
+        _semanticMeshRenderer.material.mainTexture = _semanticTexture;
     }
 }
