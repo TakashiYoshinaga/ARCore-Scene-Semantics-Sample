@@ -78,8 +78,9 @@ Shader "AR_Fukuoka/SemanticLabels"
 
             fixed4 frag (v2f i) : SV_Target
             {
+                float2 uv = float2(1.0-i.uv.y, 1.0-i.uv.x);
                 // sample the texture
-                fixed4 col = tex2D(_MainTex, i.uv);
+                fixed4 col = tex2D(_MainTex, uv);
                 int semanticLabel= round(col.r*255);
                 switch(semanticLabel)
                 {
