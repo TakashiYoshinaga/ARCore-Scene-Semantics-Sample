@@ -6,5 +6,5 @@ Dependencies:<br>
 - AR Foundation<br>
 - AR Core<br>
 - ARCore Extensions for AR Foundation v1.37.0<br>
-　Download from: https://github.com/google-ar/arcore-unity-extensions/releases/tag/1.37.0"
+  Download from: https://github.com/google-ar/arcore-unity-extensions/releases/tag/1.37.0"
 <br>
