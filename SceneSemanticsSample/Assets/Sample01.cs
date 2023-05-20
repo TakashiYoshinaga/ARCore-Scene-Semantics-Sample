@@ -20,6 +20,11 @@ public class Sample01 : MonoBehaviour
     bool _isSemanticModeSupported = false;
     [SerializeField]
     int _waitFrameCount=150;
+    [SerializeField]
+    MeshRenderer _semanticMeshRenderer;
+    Texture2D _semanticTexture;
+    bool _textureInitialized=false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,11 +50,18 @@ public class Sample01 : MonoBehaviour
         if(_debugText==null || !_showDebugText){ return;}
         _debugText.text = text;
     }
-    
     // Update is called once per frame
     void Update()
     {
-        
-
+        //If SemanticMode is not supported, do nothing.
+        if(!_isSemanticModeSupported){return ;}
+        //If SemanticTexture is not ready, do nothing.
+        if(!_semanticManager.TryGetSemanticTexture(ref _semanticTexture)){ return;}
+        //If texture of MeshRenderer is not initialized, set SemanticTexture to MeshRenderer.
+        if(!_textureInitialized){
+            _textureInitialized=true;
+            //Set SemanticTexture to MeshRenderer.
+            _semanticMeshRenderer.material.mainTexture = _semanticTexture;
+        }
     }
 }
