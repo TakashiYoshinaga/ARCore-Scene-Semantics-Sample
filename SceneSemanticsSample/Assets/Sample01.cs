@@ -58,5 +58,10 @@ public class Sample01 : MonoBehaviour
         if(!_semanticManager.TryGetSemanticTexture(ref _semanticTexture)){ return;}
         //Set SemanticTexture to MeshRenderer.
         _semanticMeshRenderer.material.mainTexture = _semanticTexture;
+        //Note:
+        //Semantic label is stored in SemanticTexture as R8 format.
+        //To show the label, conversion from R8 to RGBA32 is required.
+        //In order to avoid cpu load, the conversion is done in GPU.
+        //Please see the shader file(Assets/Materials/SemanticLabels.shader) for details.
     }
 }
