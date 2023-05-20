@@ -1,4 +1,4 @@
-# ARCore Scene Semantics Sample
+# ARCore Scene Semantics Sample for Unity
 This sample demonstrates how to overlay labels, obtained using the ARCore Scene Semantics API.
 
 Dependencies:<br>
