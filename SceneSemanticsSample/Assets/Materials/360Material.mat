@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StencilMaterial
-  m_Shader: {fileID: 4800000, guid: 47f652101e74a4c1191777cdd84d28e6, type: 3}
+  m_Name: 360Material
+  m_Shader: {fileID: 4800000, guid: 478e713e756b042bc976ed5335c07f4e, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -41,7 +41,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 0caad020e236f4053bf2380795879e01, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -65,7 +65,6 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MaskAreaVisibility: 0
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -76,31 +75,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Building: {r: 0.3098038, g: 0.31372538, b: 0.3098038, a: 0.4}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color0: {r: 1, g: 1, b: 1, a: 1}
-    - _Color1: {r: 1, g: 1, b: 1, a: 1}
-    - _Color10: {r: 1, g: 1, b: 1, a: 1}
-    - _Color11: {r: 1, g: 1, b: 1, a: 1}
-    - _Color2: {r: 1, g: 1, b: 1, a: 1}
-    - _Color3: {r: 1, g: 1, b: 1, a: 1}
-    - _Color4: {r: 1, g: 1, b: 1, a: 1}
-    - _Color5: {r: 1, g: 1, b: 1, a: 1}
-    - _Color6: {r: 1, g: 1, b: 1, a: 1}
-    - _Color7: {r: 1, g: 1, b: 1, a: 1}
-    - _Color8: {r: 1, g: 1, b: 1, a: 1}
-    - _Color9: {r: 1, g: 1, b: 1, a: 1}
-    - _DefaultColor: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Object: {r: 0.8862746, g: 0.8745099, b: 0.2862745, a: 0.4}
-    - _Person: {r: 0.9215687, g: 0.19999999, b: 0.14117643, a: 0.4}
-    - _Road: {r: 0.5490196, g: 0.21568623, b: 0.8745099, a: 0.4}
-    - _Sidewalk: {r: 0.8941177, g: 0.22745097, b: 0.8862746, a: 0.4}
-    - _Sky: {r: 0.38039213, g: 0.545098, b: 0.7490196, a: 0.4}
-    - _Structure: {r: 0.8313726, g: 0.74509805, b: 0.60784316, a: 0.4}
-    - _Terrain: {r: 0.7176471, g: 0.972549, b: 0.67058825, a: 0.4}
-    - _Tree: {r: 0.3098039, g: 0.57254905, b: 0.23921567, a: 0.4}
-    - _Unlabeled: {r: 0, g: 0, b: 0, a: 0}
-    - _Vehicle: {r: 0.043137237, g: 0.06274508, b: 0.87843144, a: 0.4}
-    - _Water: {r: 0.454902, g: 0.909804, b: 0.854902, a: 0.4}
   m_BuildTextureStacks: []

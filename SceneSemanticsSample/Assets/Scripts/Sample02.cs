@@ -18,7 +18,7 @@ public class Sample02 : MonoBehaviour
     int _waitFrameCount=150;
     [SerializeField]
     GameObject _semanticQuad;
-    [Header("Set as Mask")]
+    [Header("MaskSetting")]
     [SerializeField]
     bool _unlabeldPixels=false;
     [SerializeField]
@@ -43,13 +43,17 @@ public class Sample02 : MonoBehaviour
     bool _personPixels=true;
     [SerializeField]
     bool _waterPixels=true;
-
-
+    [SerializeField]
+    [Range (0.0f, 1.0f)]
+    float _maskAreaVisibility=1.0f;
+    
     [Header("For Debug")]
     [SerializeField]
     Text _debugText;
     [SerializeField]
     bool _showDebugText=true;
+    [SerializeField]
+    bool _testingInsideRoom=false; //If true, the building pixels are not shown.
 
     //Private variables
     bool _isSemanticModeSupported = false;
@@ -72,7 +76,7 @@ public class Sample02 : MonoBehaviour
             c.a=0.0f;
             _semanticMeshRenderer.material.SetColor("_Sky", c);
        }
-        if(!_buildingPixels){ 
+        if(!_buildingPixels || _testingInsideRoom){ 
             Color c= _semanticMeshRenderer.material.GetColor("_Building");
             c.a=0.0f;
             _semanticMeshRenderer.material.SetColor("_Building", c);
@@ -121,7 +125,8 @@ public class Sample02 : MonoBehaviour
             Color c= _semanticMeshRenderer.material.GetColor("_Water");
             c.a=0.0f;
             _semanticMeshRenderer.material.SetColor("_Water", c);
-       }    
+       }   
+       _semanticMeshRenderer.material.SetFloat("_MaskAreaVisibility", _maskAreaVisibility);
     }
 
 

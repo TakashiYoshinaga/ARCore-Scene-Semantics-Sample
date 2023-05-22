@@ -20,22 +20,22 @@ Shader "AR_Fukuoka/SemanticStencils"
         _Vehicle ("Vehicle", Color) = (1,1,1,1)
         _Person ("Person", Color) = (1,1,1,1)
         _Water ("Water", Color) = (1,1,1,1) 
-        _DefaultColor ("Default Color", Color) = (1,1,1,1)               
+        _DefaultColor ("Default Color", Color) = (1,1,1,1)    
+        _MaskAreaVisibility("MaskAreaVisibility", Range(0,1)) = 1           
     }
     SubShader
     {
-        Tags { "Queue"="Geometry-1" "RenderType"="Transparent" }
+        Tags { "Queue"="Geometry-10" "RenderType"="Transparent" }
         LOD 100
-
-        Stencil
-        {
-            Ref 2
-            Comp Always
-            Pass Replace
-        }
 
         Pass
         {
+            Stencil
+            {
+                Ref 2
+                Comp Always
+                Pass Replace
+            }
             Blend SrcAlpha OneMinusSrcAlpha
             CGPROGRAM
             #pragma vertex vert
@@ -73,6 +73,7 @@ Shader "AR_Fukuoka/SemanticStencils"
             fixed4 _Person;
             fixed4 _Water;
             fixed4 _DefaultColor;
+            float _MaskAreaVisibility;
 
             v2f vert (appdata v)
             {
@@ -106,7 +107,7 @@ Shader "AR_Fukuoka/SemanticStencils"
                     default: col = _DefaultColor; break;
                 }
                 if(col.a == 0.0) discard;
-            
+                col.a=col.a*_MaskAreaVisibility;
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;
