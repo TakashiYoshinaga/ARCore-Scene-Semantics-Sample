@@ -24,7 +24,7 @@ Shader "AR_Fukuoka/SemanticStencils"
     }
     SubShader
     {
-        Tags { "Queue"="1999" "RenderType"="Transparent" }
+        Tags { "Queue"="Geometry" "RenderType"="Transparent" }
         LOD 100
 
         Stencil
