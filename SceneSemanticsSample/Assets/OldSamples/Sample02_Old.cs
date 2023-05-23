@@ -9,7 +9,7 @@ using Google.XR.ARCoreExtensions;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Sample02 : MonoBehaviour
+public class Sample02_Old : MonoBehaviour
 {
     [Header("Required for Using SemanticMode")]
     [SerializeField]

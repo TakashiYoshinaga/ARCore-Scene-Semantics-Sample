@@ -3,7 +3,7 @@
     Copyright (C) 2023 Takashi Yoshinaga. All Rights Reserved.
 */
 
-Shader "AR_Fukuoka/SemanticStencils"
+Shader "AR_Fukuoka/SemanticStencils_Old"
 {
     Properties
     {
