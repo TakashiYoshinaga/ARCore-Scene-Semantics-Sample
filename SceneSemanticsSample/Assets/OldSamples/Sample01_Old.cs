@@ -9,28 +9,20 @@ using Google.XR.ARCoreExtensions;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Sample02 : MonoBehaviour
+public class Sample01_Old : MonoBehaviour
 {
-    [Header("[For Using Scene Semantics]")]
+    [Header("Required for Using SemanticMode")]
     [SerializeField]
     ARSemanticManager _semanticManager;
     [SerializeField]
     int _waitFrameCount=150;
     [SerializeField]
     GameObject _semanticQuad;
-    [SerializeField]
-    bool _testingInsideRoom=false; //If true, the building pixels are not shown.
-    [SerializeField]
-    LabelInfoManager _labelInfoManager=new LabelInfoManager();   
-    [SerializeField]
-    [Range (0.0f, 1.0f)]
-    float _maskColorVisibility=1.0f;
     [Header("For Debug")]
     [SerializeField]
     Text _debugText;
     [SerializeField]
     bool _showDebugText=true;
-
 
     //Private variables
     bool _isSemanticModeSupported = false;
@@ -42,16 +34,6 @@ public class Sample02 : MonoBehaviour
     void Start()
     {
         _semanticMeshRenderer = _semanticQuad.GetComponent<MeshRenderer>();
-        //Pass the color array to the shader.
-        _semanticMeshRenderer.material.SetColorArray("_LabelColorArray", _labelInfoManager.GetColorArray());
-        //If are testing inside room, set the mask flag of the building to false.
-        if(_testingInsideRoom){
-            _labelInfoManager.SetMaskFlag(LabelName.Building, false);
-        }
-        //Pass the mask flag array to the shader.
-        _semanticMeshRenderer.material.SetFloatArray("_MaskFlagArray", _labelInfoManager.GetMaskArray());
-        //Pass the mask area visibility(= coefficient for opacity) to the shader.
-        _semanticMeshRenderer.material.SetFloat("_MaskAreaVisibility", _maskColorVisibility);
         //Check whether SemanticMode is supported.
         StartCoroutine(CheckSemanticModeSupportedCoroutine());
     }
@@ -94,6 +76,9 @@ public class Sample02 : MonoBehaviour
         if(!_isSemanticModeSupported){return ;}
         //If SemanticTexture is not ready, do nothing.
         if(!_semanticManager.TryGetSemanticTexture(ref _semanticTexture)){ return;}
+        //If SemanticTexture is not assigned, do nothing.
+        if(_semanticTexture==null){ SetDebugText("Render object isn't assigned"); return;}
+
         //Set SemanticTexture to MeshRenderer.
         _semanticMeshRenderer.material.mainTexture = _semanticTexture;
         

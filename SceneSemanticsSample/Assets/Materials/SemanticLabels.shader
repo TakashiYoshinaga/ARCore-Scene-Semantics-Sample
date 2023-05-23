@@ -7,20 +7,7 @@ Shader "AR_Fukuoka/SemanticLabels"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
-        _Unlabeled ("Unlabeled", Color) = (1,1,1,1)
-        _Sky ("Sky", Color) = (1,1,1,1)
-        _Building ("Building", Color) = (1,1,1,1)
-        _Tree ("Tree", Color) = (1,1,1,1)
-        _Road ("Road", Color) = (1,1,1,1)
-        _Sidewalk ("Sidewalk", Color) = (1,1,1,1)
-        _Terrain ("Terrain", Color) = (1,1,1,1)
-        _Structure ("Structure", Color) = (1,1,1,1)
-        _Object ("Object", Color) = (1,1,1,1)
-        _Vehicle ("Vehicle", Color) = (1,1,1,1)
-        _Person ("Person", Color) = (1,1,1,1)
-        _Water ("Water", Color) = (1,1,1,1) 
-        _DefaultColor ("Default Color", Color) = (1,1,1,1)               
+        _MainTex ("Texture", 2D) = "white" {}              
     }
     SubShader
     {
@@ -53,20 +40,8 @@ Shader "AR_Fukuoka/SemanticLabels"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
-            fixed4 _Unlabeled;
-            fixed4 _Sky;
-            fixed4 _Building;
-            fixed4 _Tree;
-            fixed4 _Road;
-            fixed4 _Sidewalk;
-            fixed4 _Terrain;
-            fixed4 _Structure;
-            fixed4 _Object;
-            fixed4 _Vehicle;
-            fixed4 _Person;
-            fixed4 _Water;
-            fixed4 _DefaultColor;
-
+            //Array for 12 semantic labels defined by ARCore + 1 for default color
+            float4 _LabelColorArray[13];
             v2f vert (appdata v)
             {
                 v2f o;
@@ -82,22 +57,26 @@ Shader "AR_Fukuoka/SemanticLabels"
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, uv);
                 int semanticLabel= round(col.r*255);
-                switch(semanticLabel)
-                {
-                    case 0: col = _Unlabeled; break;
-                    case 1: col = _Sky; break;
-                    case 2: col = _Building; break;
-                    case 3: col = _Tree; break;
-                    case 4: col = _Road; break;
-                    case 5: col = _Sidewalk; break;
-                    case 6: col = _Terrain; break;
-                    case 7: col = _Structure; break;
-                    case 8: col = _Object; break;
-                    case 9: col = _Vehicle; break;
-                    case 10: col = _Person; break;
-                    case 11: col = _Water; break;
-                    default: col = _DefaultColor; break;
-                }
+                // switch(semanticLabel)
+                // {
+                //     case 0: col = _Unlabeled; break;
+                //     case 1: col = _Sky; break;
+                //     case 2: col = _Building; break;
+                //     case 3: col = _Tree; break;
+                //     case 4: col = _Road; break;
+                //     case 5: col = _Sidewalk; break;
+                //     case 6: col = _Terrain; break;
+                //     case 7: col = _Structure; break;
+                //     case 8: col = _Object; break;
+                //     case 9: col = _Vehicle; break;
+                //     case 10: col = _Person; break;
+                //     case 11: col = _Water; break;
+                //     default: col = _DefaultColor; break;
+                // }
+                //Limit semanticLabel to 0-12 (13 labels) 
+                semanticLabel = clamp(semanticLabel, 0, 12);
+                //Select color from array
+                col = _LabelColorArray[semanticLabel];
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;

@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SemanticsMaterial
-  m_Shader: {fileID: 4800000, guid: b314c21a0a0f34ad9bc0a62eb2d7ea60, type: 3}
+  m_Name: SemanticsMaterial_Old
+  m_Shader: {fileID: 4800000, guid: 6f799dd700da24220b7f4e24cbe2fcd8, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4

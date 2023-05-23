@@ -502,7 +502,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f862380e6ae1a47a48172e97496727ec, type: 2}
+  - {fileID: 2100000, guid: 805954bde63584e16a68def54c1e68ca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -812,25 +812,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1853377309}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65c1540f618b04e2f991b81794eb339e, type: 3}
+  m_Script: {fileID: 11500000, guid: c4df3428619d74c55bb4abbf70e44e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _semanticManager: {fileID: 1853377312}
   _waitFrameCount: 150
   _semanticQuad: {fileID: 1048659444}
-  _labelColorManager:
-    _Unlabeled: {r: 0, g: 0, b: 0, a: 0}
-    _Sky: {r: 0.3803921, g: 0.545098, b: 0.7490196, a: 1}
-    _Building: {r: 0.3098038, g: 0.3137254, b: 0.3098038, a: 0.4}
-    _Tree: {r: 0.3098039, g: 0.572549, b: 0.2392156, a: 0.4}
-    _Road: {r: 0.5490196, g: 0.2156862, b: 0.8745099, a: 0.4}
-    _Sidewalk: {r: 0.8941177, g: 0.2274509, b: 0.8862746, a: 0.4}
-    _Terrain: {r: 0.7176471, g: 0.972549, b: 0.6705883, a: 0.4}
-    _Structure: {r: 0.8313726, g: 0.7450981, b: 0.6078432, a: 0.4}
-    _Object: {r: 0.8862746, g: 0.8745099, b: 0.2862745, a: 0.4}
-    _Vehicle: {r: 0.04313721, g: 0.06274506, b: 0.8784314, a: 0.4}
-    _Person: {r: 0.9215687, g: 0.2, b: 0.1411764, a: 0.4}
-    _Water: {r: 0.454902, g: 0.909804, b: 0.854902, a: 0.4}
   _debugText: {fileID: 1723694262}
   _showDebugText: 1
 --- !u!1 &1863581638

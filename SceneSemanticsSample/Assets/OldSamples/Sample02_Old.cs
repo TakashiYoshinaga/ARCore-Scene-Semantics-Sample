@@ -9,28 +9,51 @@ using Google.XR.ARCoreExtensions;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Sample02 : MonoBehaviour
+public class Sample02_Old : MonoBehaviour
 {
-    [Header("[For Using Scene Semantics]")]
+    [Header("Required for Using SemanticMode")]
     [SerializeField]
     ARSemanticManager _semanticManager;
     [SerializeField]
     int _waitFrameCount=150;
     [SerializeField]
     GameObject _semanticQuad;
+    [Header("MaskSetting")]
     [SerializeField]
-    bool _testingInsideRoom=false; //If true, the building pixels are not shown.
+    bool _unlabeldPixels=false;
     [SerializeField]
-    LabelInfoManager _labelInfoManager=new LabelInfoManager();   
+    bool _skyPixels=false;
+    [SerializeField]
+    bool _buildingPixels=false;
+    [SerializeField]
+    bool _treePixels=true;
+    [SerializeField]
+    bool _roadPixels=true;
+    [SerializeField]
+    bool _sideWalkPixels=true;
+    [SerializeField]
+    bool _terrainPixels=true;
+    [SerializeField]
+    bool _structurePixels=true;
+    [SerializeField]
+    bool _objectPixels=true;
+    [SerializeField]
+    bool _vehiclePixels=true;
+    [SerializeField]
+    bool _personPixels=true;
+    [SerializeField]
+    bool _waterPixels=true;
     [SerializeField]
     [Range (0.0f, 1.0f)]
-    float _maskColorVisibility=1.0f;
+    float _maskAreaVisibility=1.0f;
+    
     [Header("For Debug")]
     [SerializeField]
     Text _debugText;
     [SerializeField]
     bool _showDebugText=true;
-
+    [SerializeField]
+    bool _testingInsideRoom=false; //If true, the building pixels are not shown.
 
     //Private variables
     bool _isSemanticModeSupported = false;
@@ -42,19 +65,70 @@ public class Sample02 : MonoBehaviour
     void Start()
     {
         _semanticMeshRenderer = _semanticQuad.GetComponent<MeshRenderer>();
-        //Pass the color array to the shader.
-        _semanticMeshRenderer.material.SetColorArray("_LabelColorArray", _labelInfoManager.GetColorArray());
-        //If are testing inside room, set the mask flag of the building to false.
-        if(_testingInsideRoom){
-            _labelInfoManager.SetMaskFlag(LabelName.Building, false);
-        }
-        //Pass the mask flag array to the shader.
-        _semanticMeshRenderer.material.SetFloatArray("_MaskFlagArray", _labelInfoManager.GetMaskArray());
-        //Pass the mask area visibility(= coefficient for opacity) to the shader.
-        _semanticMeshRenderer.material.SetFloat("_MaskAreaVisibility", _maskColorVisibility);
+        //Set StencilFlags
+        SetStencilFlags();
         //Check whether SemanticMode is supported.
         StartCoroutine(CheckSemanticModeSupportedCoroutine());
     }
+    void SetStencilFlags(){
+        if(!_skyPixels){ 
+            Color c= _semanticMeshRenderer.material.GetColor("_Sky");
+            c.a=0.0f;
+            _semanticMeshRenderer.material.SetColor("_Sky", c);
+       }
+        if(!_buildingPixels || _testingInsideRoom){ 
+            Color c= _semanticMeshRenderer.material.GetColor("_Building");
+            c.a=0.0f;
+            _semanticMeshRenderer.material.SetColor("_Building", c);
+       }
+        if(!_treePixels){ 
+            Color c= _semanticMeshRenderer.material.GetColor("_Tree");
+            c.a=0.0f;
+            _semanticMeshRenderer.material.SetColor("_Tree", c);
+       }
+        if(!_roadPixels){ 
+            Color c= _semanticMeshRenderer.material.GetColor("_Road");
+            c.a=0.0f;
+            _semanticMeshRenderer.material.SetColor("_Road", c);
+       }
+        if(!_sideWalkPixels){ 
+            Color c= _semanticMeshRenderer.material.GetColor("_SideWalk");
+            c.a=0.0f;
+            _semanticMeshRenderer.material.SetColor("_SideWalk", c);
+       }
+        if(!_terrainPixels){ 
+            Color c= _semanticMeshRenderer.material.GetColor("_Rerrain");
+            c.a=0.0f;
+            _semanticMeshRenderer.material.SetColor("_Rerrain", c);
+       }
+        if(!_structurePixels){ 
+            Color c= _semanticMeshRenderer.material.GetColor("_Structure");
+            c.a=0.0f;
+            _semanticMeshRenderer.material.SetColor("_Structure", c);
+       }
+        if(!_objectPixels){ 
+            Color c= _semanticMeshRenderer.material.GetColor("_Object");
+            c.a=0.0f;
+            _semanticMeshRenderer.material.SetColor("_Object", c);
+       }
+        if(!_vehiclePixels){ 
+            Color c= _semanticMeshRenderer.material.GetColor("_Vehicle");
+            c.a=0.0f;
+            _semanticMeshRenderer.material.SetColor("_Vehicle", c);
+       }
+        if(!_personPixels){ 
+            Color c= _semanticMeshRenderer.material.GetColor("_Person");
+            c.a=0.0f;
+            _semanticMeshRenderer.material.SetColor("_Person", c);
+       }
+        if(!_waterPixels){ 
+            Color c= _semanticMeshRenderer.material.GetColor("_Water");
+            c.a=0.0f;
+            _semanticMeshRenderer.material.SetColor("_Water", c);
+       }   
+       _semanticMeshRenderer.material.SetFloat("_MaskAreaVisibility", _maskAreaVisibility);
+    }
+
 
     IEnumerator CheckSemanticModeSupportedCoroutine(){
         int count=0;
@@ -94,6 +168,9 @@ public class Sample02 : MonoBehaviour
         if(!_isSemanticModeSupported){return ;}
         //If SemanticTexture is not ready, do nothing.
         if(!_semanticManager.TryGetSemanticTexture(ref _semanticTexture)){ return;}
+        //If SemanticTexture is not assigned, do nothing.
+        if(_semanticTexture==null){ SetDebugText("Render object isn't assigned"); return;}
+
         //Set SemanticTexture to MeshRenderer.
         _semanticMeshRenderer.material.mainTexture = _semanticTexture;
         

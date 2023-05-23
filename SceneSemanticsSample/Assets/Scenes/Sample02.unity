@@ -502,7 +502,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 29048f48258414c3190646468fee9858, type: 2}
+  - {fileID: 2100000, guid: 75cc6b5c9c6ff4951b025deafef6e407, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -812,28 +812,56 @@ MonoBehaviour:
   m_GameObject: {fileID: 1853377309}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5ed2f98f108e472db40c1ee9363a8d6, type: 3}
+  m_Script: {fileID: 11500000, guid: dbd24306db07e4684a315a7fc780aeca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _semanticManager: {fileID: 1853377312}
   _waitFrameCount: 150
   _semanticQuad: {fileID: 1048659444}
-  _unlabeldPixels: 0
-  _skyPixels: 0
-  _buildingPixels: 1
-  _treePixels: 1
-  _roadPixels: 1
-  _sideWalkPixels: 1
-  _rerrainPixels: 1
-  _structurePixels: 1
-  _objectPixels: 1
-  _vehiclePixels: 1
-  _personPixels: 1
-  _waterPixels: 1
-  _maskAreaVisibility: 1
+  _testingInsideRoom: 0
+  _labelInfoManager:
+    _unlabeledInfo:
+      _color: {r: 0, g: 0, b: 0, a: 0}
+      _isMask: 0
+    _skyInfo:
+      _color: {r: 0.3803921, g: 0.545098, b: 0.7490196, a: 0.4}
+      _isMask: 0
+    _buildingInfo:
+      _color: {r: 0.3098038, g: 0.3137254, b: 0.3098038, a: 0.4}
+      _isMask: 1
+    _treeInfo:
+      _color: {r: 0.3098039, g: 0.572549, b: 0.2392156, a: 0.4}
+      _isMask: 1
+    _roadInfo:
+      _color: {r: 0.5490196, g: 0.2156862, b: 0.8745099, a: 0.4}
+      _isMask: 1
+    _sidewalkInfo:
+      _color: {r: 0.8941177, g: 0.2274509, b: 0.8862746, a: 0.4}
+      _isMask: 1
+    _terrainInfo:
+      _color: {r: 0.7176471, g: 0.972549, b: 0.6705883, a: 0.4}
+      _isMask: 1
+    _structureInfo:
+      _color: {r: 0.8313726, g: 0.7450981, b: 0.6078432, a: 0.4}
+      _isMask: 1
+    _objectInfo:
+      _color: {r: 0.8862746, g: 0.8745099, b: 0.2862745, a: 0.4}
+      _isMask: 1
+    _vehicleInfo:
+      _color: {r: 0.04313721, g: 0.06274506, b: 0.8784314, a: 0.4}
+      _isMask: 1
+    _personInfo:
+      _color: {r: 0.9215687, g: 0.2, b: 0.1411764, a: 0.4}
+      _isMask: 1
+    _waterInfo:
+      _color: {r: 0.454902, g: 0.909804, b: 0.854902, a: 0.4}
+      _isMask: 1
+    _defaultInfo:
+      _color: {r: 1, g: 1, b: 1, a: 0.4}
+      _isMask: 0
+  _maskColorVisibility: 1
   _debugText: {fileID: 1723694262}
   _showDebugText: 1
-  _testingInsideRoom: 0
 --- !u!1 &1863581638
 GameObject:
   m_ObjectHideFlags: 0

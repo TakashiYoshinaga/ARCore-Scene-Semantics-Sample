@@ -11,14 +11,18 @@ using UnityEngine.UI;
 
 public class Sample01 : MonoBehaviour
 {
-    [Header("Required for Using SemanticMode")]
+    [Header("[For Using Scene Semantics]")]
     [SerializeField]
     ARSemanticManager _semanticManager;
     [SerializeField]
-    int _waitFrameCount=150;
+    int _maxWaitFrameCount=150;
     [SerializeField]
     GameObject _semanticQuad;
-    [Header("For Debug")]
+
+    [SerializeField]
+    LabelColorManager _labelColorManager=new LabelColorManager();
+
+    [Header("[For Debug]")]
     [SerializeField]
     Text _debugText;
     [SerializeField]
@@ -34,13 +38,14 @@ public class Sample01 : MonoBehaviour
     void Start()
     {
         _semanticMeshRenderer = _semanticQuad.GetComponent<MeshRenderer>();
+        _semanticMeshRenderer.material.SetColorArray("_LabelColorArray", _labelColorManager.GetColorArray());
         //Check whether SemanticMode is supported.
         StartCoroutine(CheckSemanticModeSupportedCoroutine());
     }
 
     IEnumerator CheckSemanticModeSupportedCoroutine(){
         int count=0;
-        while(!_isSemanticModeSupported && count<_waitFrameCount){
+        while(!_isSemanticModeSupported && count<_maxWaitFrameCount){
             //https://developers.google.com/ar/reference/unity-arf/class/Google/XR/ARCoreExtensions/ARSemanticManager
             FeatureSupported featureSupported = _semanticManager.IsSemanticModeSupported(SemanticMode.Enabled);
             if (featureSupported == FeatureSupported.Supported)
@@ -76,9 +81,6 @@ public class Sample01 : MonoBehaviour
         if(!_isSemanticModeSupported){return ;}
         //If SemanticTexture is not ready, do nothing.
         if(!_semanticManager.TryGetSemanticTexture(ref _semanticTexture)){ return;}
-        //If SemanticTexture is not assigned, do nothing.
-        if(_semanticTexture==null){ SetDebugText("Render object isn't assigned"); return;}
-
         //Set SemanticTexture to MeshRenderer.
         _semanticMeshRenderer.material.mainTexture = _semanticTexture;
         
