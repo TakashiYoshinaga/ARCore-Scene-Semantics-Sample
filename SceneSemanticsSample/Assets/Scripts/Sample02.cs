@@ -32,7 +32,7 @@ public class Sample02 : MonoBehaviour
     [SerializeField]
     bool _sideWalkPixels=true;
     [SerializeField]
-    bool _rerrainPixels=true;
+    bool _terrainPixels=true;
     [SerializeField]
     bool _structurePixels=true;
     [SerializeField]
@@ -96,7 +96,7 @@ public class Sample02 : MonoBehaviour
             c.a=0.0f;
             _semanticMeshRenderer.material.SetColor("_SideWalk", c);
        }
-        if(!_rerrainPixels){ 
+        if(!_terrainPixels){ 
             Color c= _semanticMeshRenderer.material.GetColor("_Rerrain");
             c.a=0.0f;
             _semanticMeshRenderer.material.SetColor("_Rerrain", c);
